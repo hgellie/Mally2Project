@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result</title>
+    <style>
+        body { font-family: sans-serif; margin: 2em; text-align: center; }
+        .container { max-width: 600px; margin: auto; }
+        .results-box { text-align: left; display: inline-block; margin-top: 2em; padding: 1.5em; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9; }
+        li { padding: 0.2em 0; }
+        .metric { font-size: 1.2em; margin: 0.5em 0; }
+        .metric span { font-weight: bold; }
+        .cm-table { margin: 1em auto; border-collapse: collapse; }
+        .cm-table th, .cm-table td { border: 1px solid #ccc; padding: 0.5em; text-align: center; }
+        .cm-table th { background-color: #eee; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Prediction Result</h1>
+
+        {% if prediction_text %}
+            <h2>{{ prediction_text }}</h2>
+        {% endif %}
+        
+        {% if evaluation %}
+            <div class="results-box">
+                <h3>Model Performance on Uploaded File</h3>
+                <p class="metric">Accuracy: <span>{{ accuracy }}</span></p>
+                <p class="metric">AUC Score: <span>{{ auc }}</span></p>
+                <h4>Confusion Matrix</h4>
+                <table class="cm-table">
+                    <tr><th></th><th>Predicted Goodware</th><th>Predicted Malware</th></tr>
+                    <tr><th>Actual Goodware</th><td>{{ confusion_matrix[0][0] }}</td><td>{{ confusion_matrix[0][1] }}</td></tr>
+                    <tr><th>Actual Malware</th><td>{{ confusion_matrix[1][0] }}</td><td>{{ confusion_matrix[1][1] }}</td></tr>
+                </table>
+            </div>
+        {% endif %}
+
+        {% if results_list %}
+            <div class="results-box">
+                <h3>Batch Predictions:</h3>
+                <ul>
+                    {% for item in results_list %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+        
+        <br><br><br>
+        <a href="/">Make Another Prediction</a>
+    </div>
+</body>
+</html>

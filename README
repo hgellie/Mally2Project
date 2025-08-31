@@ -1,0 +1,53 @@
+# Mally: Static Malware Detection Web Application 🤖
+
+Mally is a machine learning application designed to classify software as either malware or goodware based on its static features. The best-performing model, a Random Forest Classifier, is deployed as a Flask web application, providing both single and batch prediction capabilities.
+
+---
+
+## 📸 Screenshot
+
+![Screenshot of Mally](static/screenshot.png)
+
+*(To add the screenshot: Take a picture of your running application, save it in your `static` folder as `screenshot.png`, and make sure the line above is included.)*
+
+---
+
+## 🚀 Features
+
+* **Single Prediction:** A user-friendly, labeled form to manually input 22 software features and receive an instant prediction.
+* **Batch Prediction:** Upload a CSV file containing multiple software instances to receive predictions for each row.
+* **Automatic Evaluation:** If an uploaded CSV contains a `Label` column, the app automatically calculates and displays performance metrics, including Accuracy, AUC, and a Confusion Matrix.
+
+---
+
+## 🛠️ Technology Stack
+
+* **Backend:** Python, Flask
+* **Machine Learning:** Scikit-learn, Pandas, NumPy, XGBoost, LightGBM
+* **Deep Learning:** PyTorch
+* **Frontend:** HTML, CSS
+
+---
+
+## 🙏 Acknowledgments and Data Source
+
+This project would not be possible without the **Brazilian Malware Dataset (BRAMD)**, which was used to train and evaluate the models. The dataset is publicly available on GitHub.
+
+* **Data Source:** [https://github.com/fabriciojoc/brazilian-malware-dataset](https://github.com/fabriciojoc/brazilian-malware-dataset)
+
+If you use this dataset in your work, please cite the original paper:
+
+> F. Ceschin, F. Pinage, M. Castilho, D. Menotti, L. S. Oliveira and A. Gregio, "The Need for Speed: An Analysis of Brazilian Malware Classifiers," in IEEE Security & Privacy, vol. 16, no. 6, pp. 31-41, Nov.-Dec. 2018. doi: 10.1109/MSEC.2018.2875369.
+
+**BibTeX:**
+```bibtex
+@ARTICLE{8636415,
+author={F. {Ceschin} and F. {Pinage} and M. {Castilho} and D. {Menotti} and L. S. {Oliveira} and A. {Gregio}},
+journal={IEEE Security Privacy},
+title={The Need for Speed: An Analysis of Brazilian Malware Classifiers},
+year={2018},
+volume={16},
+number={6},
+pages={31-41},
+doi={10.1109/MSEC.2018.2875369}
+}

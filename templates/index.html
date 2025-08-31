@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <div class="container">
+    <img src="{{ url_for('static', filename='avatar.png') }}" alt="Mally Avatar" width="100" style="display: block; margin: auto;">
+    <title>Malware Detection</title>
+    <style>
+        body { font-family: sans-serif; margin: 2em; background-color: #f4f4f9; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 2em; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .form-section { border: 1px solid #ccc; padding: 1.5em; margin-bottom: 2em; border-radius: 8px; }
+        h1, h2 { text-align: center; color: #333; }
+        .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1em; }
+        .input-group { display: flex; flex-direction: column; }
+        label { margin-bottom: 0.5em; font-weight: bold; color: #555; }
+        input[type="text"], input[type="file"] { padding: 0.5em; border-radius: 4px; border: 1px solid #ccc; width: 95%; }
+        button, input[type="submit"] { padding: 0.8em 1.2em; border: none; background-color: #007bff; color: white; border-radius: 4px; cursor: pointer; font-size: 1em; }
+        button:hover, input[type="submit"]:hover { background-color: #0056b3; }
+        .note { background-color: #e7f3fe; border-left: 6px solid #2196F3; padding: 1em; margin-top: 1em; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Static Malware Detection</h1>
+
+        <div class="form-section">
+            <h2>Quick Demo: Single Prediction</h2>
+            <p>The fields below are pre-filled. Click "Predict" to test a single instance.</p>
+            <form action="{{ url_for('predict') }}" method="post">
+                <div class="feature-grid">
+                    <div class="input-group"><label>SizeOfUninitializedData</label><input type="text" name="f1" value="0" /></div>
+                    <div class="input-group"><label>SizeOfCode</label><input type="text" name="f2" value="4096" /></div>
+                    <div class="input-group"><label>NumberOfSections</label><input type="text" name="f3" value="4" /></div>
+                    <div class="input-group"><label>Size</label><input type="text" name="f4" value="139264" /></div>
+                    <div class="input-group"><label>BaseOfData</label><input type="text" name="f5" value="4096" /></div>
+                    <div class="input-group"><label>DllCharacteristics</label><input type="text" name="f6" value="33167" /></div>
+                    <div class="input-group"><label>SizeOfImage</label><input type="text" name="f7" value="139264" /></div>
+                    <div class="input-group"><label>PE_TYPE</label><input type="text" name="f8" value="267" /></div>
+                    <div class="input-group"><label>FileAlignment</label><input type="text" name="f9" value="4096" /></div>
+                    <div class="input-group"><label>Entropy</label><input type="text" name="f10" value="6.35" /></div>
+                    <div class="input-group"><label>SizeOfInitializedData</label><input type="text" name="f11" value="133120" /></div>
+                    <div class="input-group"><label>PointerToSymbolTable</label><input type="text" name="f12" value="0" /></div>
+                    <div class="input-group"><label>TimeDateStamp</label><input type="text" name="f13" value="1073741824" /></div>
+                    <div class="input-group"><label>Characteristics</label><input type="text" name="f14" value="271" /></div>
+                    <div class="input-group"><label>SizeOfHeaders</label><input type="text" name="f15" value="1024" /></div>
+                    <div class="input-group"><label>BaseOfCode</label><input type="text" name="f16" value="4096" /></div>
+                    <div class="input-group"><label>Machine</label><input type="text" name="f17" value="332" /></div>
+                    <div class="input-group"><label>NumberOfRvaAndSizes</label><input type="text" name="f18" value="16" /></div>
+                    <div class="input-group"><label>ImageBase</label><input type="text" name="f19" value="4194304" /></div>
+                    <div class="input-group"><label>NumberOfSymbols</label><input type="text" name="f20" value="0" /></div>
+                    <div class="input-group"><label>Magic</label><input type="text" name="f21" value="267" /></div>
+                    <div class="input-group"><label>SizeOfOptionalHeader</label><input type="text" name="f22" value="224" /></div>
+                </div>
+                <br>
+                <button type="submit">Predict Single Instance</button>
+            </form>
+        </div>
+
+        <div class="form-section">
+            <h2>Batch Prediction: Upload a CSV File</h2>
+            <p>Upload a CSV file with feature columns to get a prediction for each row.</p>
+            
+            <div class="note">
+                <p><strong>Pro Tip:</strong> If your uploaded file includes a 'Label' column, the app will automatically calculate and display performance metrics like accuracy and AUC for the entire file!</p>
+            </div>
+            
+            <form action="/upload" method="post" enctype="multipart/form-data">
+              <br>
+              <input type="file" name="file" accept=".csv">
+              <br><br>
+              <input type="submit" value="Upload and Predict">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
