@@ -29,6 +29,8 @@ Mally is a machine learning application designed to classify software as either 
 
 ---
 
+
+
 ## 🙏 Acknowledgments and Data Source
 
 This project would not be possible without the **Brazilian Malware Dataset (BRAMD)**, which was used to train and evaluate the models. The dataset is publicly available on GitHub.
@@ -51,3 +53,64 @@ number={6},
 pages={31-41},
 doi={10.1109/MSEC.2018.2875369}
 }
+
+## 📦 How to Run Locally
+
+To run this application on your local machine, follow these steps:
+
+1.  **Clone the Repository:**
+    ```bash
+    git clone <your-repository-url>
+    cd Mally2Project
+    ```
+
+2.  **Create a Virtual Environment (Recommended):**
+    ```bash
+    python3 -m venv venv
+    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+    ```
+
+3.  **Install Dependencies:**
+    ```bash
+    pip3 install -r requirements.txt
+    ```
+
+4.  **Run the Application:**
+    ```bash
+    python3 app.py
+    ```
+
+5.  Open your web browser and navigate to `http://127.0.0.1:5000`.
+
+---
+
+## 📖 How to Use the App
+
+### Quick Demo (Single Prediction)
+
+1.  The form on the main page is pre-filled with a sample row of data.
+2.  Click the **"Predict Single Instance"** button.
+3.  The result page will display the prediction for that single instance.
+
+### Batch Prediction & Evaluation
+
+1.  Prepare a CSV file with the 22 required feature columns.
+2.  **(Optional)**: If you want to evaluate the model's performance, ensure your CSV also contains a column named exactly `Label`. The `test_set.csv` file is perfect for this.
+3.  Click **"Choose File"** in the "Batch Prediction" section and select your CSV.
+4.  Click **"Upload and Predict"**.
+5.  The result page will display the predictions for each row. If a `Label` column was present, it will also show the accuracy, AUC, and a confusion matrix.
+
+---
+
+## 🤖 Models Trained
+
+The final production model (Random Forest) was chosen based on the highest accuracy on the unseen test set.
+
+| Model               | Test Set Accuracy |
+| ------------------- | ----------------- |
+| **Random Forest** | **98.75%** |
+| XGBoost             | 98.66%            |
+| LightGBM            | 98.30%            |
+| Decision Tree       | 97.90%            |
+| PyTorch MLP         | 94.00%            |
+| Logistic Regression | 80.45%            |
